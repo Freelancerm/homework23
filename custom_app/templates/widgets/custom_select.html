@@ -1,0 +1,36 @@
+<select name="{{ widget.name }}"
+    {% for name, value in widget.attrs.items %}
+        {{ name }}="{{ value }}"
+    {% endfor %}
+    class="form-select" >
+    {% for group_name, group_options, group_index in widget.optgroups %}
+        {% if group_name %}
+            <optgroup label="{{ group_name }}">
+        {% endif %}
+        {% for option in group_options %}
+            <option value="&quot;{{ option.value|stringformat:'s' }}&quot;"
+                {% if option.selected %} selected{% endif %}
+                {% for name, value in option.attrs.items %}
+                    {{ name }}="{{ value }}"
+                {% endfor %}
+            >
+                {{ option.label }}
+            </option>
+        {% endfor %}
+        {% if group_name %}
+            </optgroup>
+        {% endif %}
+    {% endfor %}
+</select>
+
+<script>
+    // Цей скрипт більше не потрібен, оскільки ми додали клас 'form-select' безпосередньо у тег <select>
+    // Якщо вам потрібен ваш кастомний клас {{ widget.custom_attr }}, залиште його:
+    document.addEventListener('DOMContentLoaded', function() {
+        const select = document.getElementById("{{ widget.attrs.id }}");
+        if (select) {
+            // Тут ваш кастомний клас, наприклад, 'my-custom-select-class'
+            select.classList.add("{{ widget.custom_attr }}");
+        }
+    });
+</script>

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load app_tags %}  {% block title %}Головна{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mb-5">
+    <div class="col-md-10 col-lg-8">
+        <div class="p-5 bg-white rounded-3 shadow-lg border-primary border-3 border-start">
+            <h1 class="display-5 fw-bold text-primary mb-3">
+                Ласкаво просимо до ProductHub 👋
+            </h1>
+            <p class="fs-5 mb-4 text-muted">
+                Цей проект демонструє повний набір кастомних рішень у Django (5.2.8).
+            </p>
+            <a href="{% url 'product_create' %}" class="btn btn-primary btn-lg">
+                Почати Створення Продукту
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4 text-secondary">🚀 Демонстрація Кастомних Компонентів</h2>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-success">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">✨ Теги та Фільтри (Library: app_tags)</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Кастомний тег `current_time`: Зараз:
+                        <span class="badge bg-primary fs-6">
+                            {% current_time "%H:%M:%S" %}
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        Кастомний фільтр `lower_first`: Слово "Django" перетворено на:
+                        <span class="badge bg-dark fs-6">
+                            {{"Django"|lower_first}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm border-info">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">⚙️ Кастомна Форма та Віджет</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        CustomSelectWidget: Використовується для поля Details, стилізований Bootstrap.
+                    </li>
+                    <li class="list-group-item">
+                        Кастомне поле: Поле Color code має унікальний `help_text` ("Код кольору продукту").
+                    </li>
+                    <li class="list-group-item">
+                        CustomMiddleware: Додає текст у футер, підтверджуючи його роботу при кожному запиті.
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                 <a href="{% url 'product_create' %}" class="btn btn-sm btn-outline-info">Перейти до Форми</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
